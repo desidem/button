@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        
+        
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    
+    <title>Yeux and I SignUp</title>
+        
+        
+    
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/signup_base.css">
+   
+                                                                                          
+    </head>
+    <div id="container"></div>
+    <div class= "wrapper">
+         
+        <body>
+          
+<script>	
+function start() {
+	var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "/js/fallingrainbow.js"; 
+    document.getElementsByTagName("head")[0].appendChild(script);
+    return false;
+}
+</script>
+
+ <div class="eye">
+	 
+    <a href="/index.html"><img src="/images/eye logo letters rev2.png" alt="Site Name" /></a> 
+  </div>  
+
+	<div class="heds">	
+
+		
+<h2 id="demo" onclick="start()">
+<span>T</span>
+<span>r</span>
+<span>è</span>
+<span>s</span>
+<span> </span>
+<span>c</span>
+<span>o</span>
+<span>o</span>
+<span>l</span>
+			
+		</h2>
+		
+
+
+<h1>Stories for Children</h1> 
+	</div>
+
+<menu class="menu">
+        
+
+       
+    <ul>
+		
+
+    <li class="dropdown"><a href="javascript:void(0)"><span class="button">About</span></a>
+		<div class="dropdown-content">
+      <a href="/about/index.html">Our Story</a>
+      <a href="/privacy/index.html">Privacy</a>
+      <a href="/tos/index.html">Terms of Service</a>
+      <a href="/contact/index.html">Contact</a>
+    </div>
+  
+		</li>
+
+        
+    
+		
+		
+   <li class="dropdown"><a href="javascript:void(0)"><span class="button">Stories</span></a>
+	  <div class="dropdown-content">
+      <a href="/library/index.html">Library</a>
+      <a href="/sample/index.html">Sample</a>
+    
+    </div>
+		</li>
+			
+
+        
+	   
+	
+		
+		<li class="dropdown"><a href="javascript:void(0)"><span class="button">Subscribers</span></a>
+	  
+		
+		 <div class="dropdown-content">
+      <a href="/signin/index.html">Log In</a>
+      <a href="/signup/index.html">Sign Up</a>
+    
+    </div>
+  </li>
+
+			
+    </ul>
+    
+
+	
+          
+  
+</menu>
+   
+
+<div class="header">	
+
+
+<h5>Subscribe to Yeux and I</h5>
+<p>Special introductory offer: $3(+tax) per month!</p>
+ 
+ <p> New content published throughout the year.</p> 
+&nbsp;
+<p>Access to <em>all</em> our stories is as easy as 1, 2, 3!</p>
+</div>
+
+
+
+<main id="main">	
+  
+  <div class="subitems">
+  <ol>
+  <li>Click the <strong>Sign Up</strong> button for an account.</li>
+  <li>Acknowledge your email confirmation.</li>
+  <li>Click the <strong>Subscribe</strong> button for payment.</li>
+  </ol>
+  </div>
+
+<style>
+  .user-info {
+    align-items: center;
+   /** background-color: yellow; **/
+    list-style: none;
+    padding: 0;
+  }
+
+  .user-info button {
+ 
+    background: black;
+    border: 0;
+    border-radius: 0.5rem;
+    color: white;
+    display: inline-block;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+
+  }
+
+</style>
+
+    
+<div class="user-info">
+  
+<button id="right">Sign Up</button>
+</div>
+
+
+
+
+  <!-- include the widget -->
+  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+
+  <script>
+
+
+/** must include **/
+    
+    const button2 = document.getElementById('right');
+
+    
+    const signup = () => netlifyIdentity.open('signup');
+
+    // by default, add login and signup functionality
+  
+    button2.addEventListener('click', signup);
+
+    const updateUserInfo = (user) => {
+    const container = document.querySelector('.user-info');
+
+    // cloning the buttons removes existing event listeners
+   
+    const b2 = button2.cloneNode(true);
+
+     // empty the user info div
+     container.innerHTML = '';
+
+     if (user) {
+       
+       b2.innerText = 'Purchase Subscription';
+       b2.addEventListener('click', () => {
+     fetch('/.netlify/functions/checkout-session', { 
+       /**     fetch('./functions/checkout-session', {**/
+          method: 'POST',
+          headers: {
+          Authorization: `Bearer ${user.token.access_token}`,
+        },
+
+      
+       })
+         .then((res) => res.json())
+         .then((link) => {
+          window.location.href = link;
+          
+         })
+         .catch((err) => console.error(err));
+
+       });
+
+
+/** this very important for auto sign in after buying sub**/
+       
+      netlifyIdentity.refresh(true);
+      
+
+     } else {
+       // if no one is logged in, show login/signup options
+    
+      b2.innerText = 'Sign Up';
+      b2.addEventListener('click', signup);
+      
+
+     }
+
+     // add the updated buttons back to the user info div
+    
+   /** PUT BACK IF DELETE CONTAINER DOESNT WORK **/
+    container.appendChild(b2);  
+
+
+
+       /**  container.remove(b2);  **/
+
+     
+   };
+  
+           // remove any existing content from the content container
+
+    const handleUserStateChange = (user) => {
+    updateUserInfo(user);
+ 
+
+ /**  loadSubscriptionContent(user); **/
+   };
+   
+  
+   netlifyIdentity.on('init', handleUserStateChange);
+   netlifyIdentity.on('login', handleUserStateChange);
+   netlifyIdentity.on('logout', handleUserStateChange);
+/**   netlifyIdentity.refresh().then((jwt)=>console.log(jwt)); **/
+/** /**removed for next stage **/ 
+ /** netlifyIdentity.refresh().then((jwt)=>console.log(jwt));  **/ 
+
+
+  </script>
+
+
+<div class="addtext">
+
+
+<p>A parent or guardian <em>must</em> be the owner of a Yeux and I account and subscription.</p>  
+&nbsp;
+<p>By signing up for an account with your email and by purchasing a digital subscription to Yeux and I with your credit card, you (the parent or guardian) 
+are providing consent for your child to use, view, and interact with the Yeux and I website and its content.</p>
+&nbsp;
+<p>Subscriptions auto-renew at the end of each term. Subscribers can cancel at any time through the Customer Portal on the  <a href="/signin/index.html">Log In</a> page.</p>
+&nbsp;
+
+<p>See additional details below and visit our full <a href="/tos/index.html">Terms of Service</a> and <a href="/privacy/index.html">Privacy Policy</a> pages.</p>
+&nbsp;
+
+</div>
+
+<h4>Yeux and I Respects Children’s Privacy</h4>
+<div class="privacypoints">
+<ul>
+<li>We do not serve ads on our website.</li>
+<li>We do not collect/request your child’s personal information on our website (e.g., name, photo, phone number).</li>
+<li>We do not ask for additional purchases (in-app purchases) on our website.</li> 
+<li>User emails/accounts must be that of an adult (parent or guardian).</li>
+<li>We collect parents’ emails, names, and billing addresses for subscriptions.</li>
+<li>By signing up for an account and paying for a subscription with a credit card, parents are giving consent for Yeux and I to collect, use, and disclose information from parents and their children.
+<li>We track users on our site as a means to provide access to paid subscription content.</li>
+<li>We use Stripe to process payments.</li>
+<li>Stripe contacts subscribers (i.e., parents) via email with renewal reminders and other payment queries.</li>
+<li>Subscriptions can be managed through the Customer Portal on the <a href="/signin/index.html"><strong>Log In</strong></a> page.</li> 
+<li>Subscriptions can be canceled at any time through the Customer Portal.</li>
+
+<li>We monitor sign-ups to our website and periodically delete email addresses without an associated subscription.</li> 
+</ul>
+</div>
+
+</main>
+	
+
+
+         <div class="footer">
+		<div class="name">Yeux &amp; I <div id="notname">stories</div>
+		
+		</div>
+		<div class="copyright">&#169; 2021 D DE MYER MEDIA LLC</div>
+</div>
+
+        </body>
+    </div>
+</html>
