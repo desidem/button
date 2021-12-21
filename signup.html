@@ -14,12 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     
     <title>Yeux and I SignUp</title>
-        
-        
     
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/signup_base.css">
-   
                                                                                           
     </head>
     <div id="container"></div>
@@ -64,9 +61,7 @@ function start() {
 	</div>
 
 <menu class="menu">
-        
-
-       
+               
     <ul>
 		
 
@@ -79,9 +74,6 @@ function start() {
     </div>
   
 		</li>
-
-        
-    
 		
 		
    <li class="dropdown"><a href="javascript:void(0)"><span class="button">Stories</span></a>
@@ -92,10 +84,6 @@ function start() {
     </div>
 		</li>
 			
-
-        
-	   
-	
 		
 		<li class="dropdown"><a href="javascript:void(0)"><span class="button">Subscribers</span></a>
 	  
@@ -109,16 +97,11 @@ function start() {
 
 			
     </ul>
-    
-
-	
-          
+            
   
 </menu>
    
-
 <div class="header">	
-
 
 <h5>Subscribe to Yeux and I</h5>
 <p>Special introductory offer: $3(+tax) per month!</p>
@@ -127,8 +110,6 @@ function start() {
 &nbsp;
 <p>Access to <em>all</em> our stories is as easy as 1, 2, 3!</p>
 </div>
-
-
 
 <main id="main">	
   
@@ -245,23 +226,17 @@ function start() {
    /** PUT BACK IF DELETE CONTAINER DOESNT WORK **/
     container.appendChild(b2);  
 
-
-
        /**  container.remove(b2);  **/
-
      
-   };
-  
+   }; 
            // remove any existing content from the content container
 
     const handleUserStateChange = (user) => {
     updateUserInfo(user);
  
-
  /**  loadSubscriptionContent(user); **/
    };
    
-  
    netlifyIdentity.on('init', handleUserStateChange);
    netlifyIdentity.on('login', handleUserStateChange);
    netlifyIdentity.on('logout', handleUserStateChange);
@@ -269,12 +244,9 @@ function start() {
 /** /**removed for next stage **/ 
  /** netlifyIdentity.refresh().then((jwt)=>console.log(jwt));  **/ 
 
-
   </script>
 
-
 <div class="addtext">
-
 
 <p>A parent or guardian <em>must</em> be the owner of a Yeux and I account and subscription.</p>  
 &nbsp;
@@ -310,8 +282,6 @@ are providing consent for your child to use, view, and interact with the Yeux an
 
 </main>
 	
-
-
          <div class="footer">
 		<div class="name">Yeux &amp; I <div id="notname">stories</div>
 		
